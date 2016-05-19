@@ -69,4 +69,7 @@ plugins:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/hoptop/hoptop.github.io
+  branch: master
+  message: {{ now('YYYY-MM-DD HH:mm:ss') }}
