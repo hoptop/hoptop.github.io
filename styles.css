@@ -8,28 +8,53 @@ body {
     background: #000;
     overflow: hidden;
     font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
 }
 
-canvas {
-    display: block;
-    background: #000;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+.marquee-container {
     width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(0, 255, 0, 0.03) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(0, 255, 0, 0.03) 0%, transparent 40%);
-    pointer-events: none;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    background: #000;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-wrapper {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: scroll-left 20s linear infinite;
+}
+
+.marquee-text {
+    display: inline-block;
+    color: #0f0;
+    font-size: 8vw;
+    font-weight: bold;
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5),
+                 0 0 20px rgba(0, 255, 0, 0.3),
+                 0 0 30px rgba(0, 255, 0, 0.2);
+    padding: 0 2em;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .input-container {
     position: fixed;
-    top: 20px;
+    bottom: 50px; /* Move to bottom */
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
@@ -83,4 +108,3 @@ canvas {
 .apply-btn:active {
     transform: scale(0.98);
 }
-
