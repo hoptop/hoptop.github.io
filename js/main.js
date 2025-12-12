@@ -1,20 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 你想要的两个人弹幕内容：只需要在这里加/改文案即可
-  // 支持两种格式：
-  // 1) 纯文本：'小能苗完成作业了！'
-  // 2) Markdown 链接：'[xuzhougeng完成作业了](https://xuzhougeng.com)'
+  // 想加几条轨道就在这里加几条
+  // 支持：
+  // - 纯文本：'小能苗完成作业了！'
+  // - Markdown 链接：'[xuzhougeng完成作业了](https://xuzhougeng.com)'
   const messages = [
     '[小能苗完成作业!](https://oliachen.github.io)',
     '[shade doll完成作业了!](https://fy10086.github.io)',
     '[任完成作业了!](http://64.176.80.113)'
-      
   ];
 
-  // 找到你原本的那条跑马灯容器
+  // 找到第一条跑马灯容器作为模板
   const firstContainer = document.querySelector('.marquee-container');
   if (!firstContainer) return;
 
-  // 创建舞台容器（用于垂直堆叠多条弹幕）
+  // 创建舞台容器（垂直堆叠 N 条弹幕）
   const stage = document.createElement('div');
   stage.className = 'danmaku-stage';
 
@@ -23,26 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
   parent.insertBefore(stage, firstContainer);
   stage.appendChild(firstContainer);
 
-  // -------- 工具函数：解析 [text](url) --------
+  // ---- 工具：解析 [text](url) ----
   function parseMarkdownLink(input) {
-    // 只解析一整段完全匹配的 Markdown 链接
-    // 例: [xxx](https://example.com)
     const s = (input || '').trim();
     const m = s.match(/^\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)$/i);
     if (!m) return null;
     return { text: m[1], url: m[2] };
   }
 
-  // -------- 工具函数：把弹幕元素设置为「纯文本」或「可点击链接」--------
+  // ---- 工具：设置某个 marquee-text 的内容（纯文本/链接）----
   function setMarqueeContent(el, rawMessage) {
     if (!el) return;
 
     const link = parseMarkdownLink(rawMessage);
     el.classList.remove('is-link');
-    el.innerHTML = ''; // 清空，避免残留
+    el.innerHTML = '';
 
     if (link) {
-      // 使用 a 标签实现可点击跳转
       const a = document.createElement('a');
       a.className = 'danmaku-link';
       a.textContent = link.text;
@@ -56,38 +52,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 生成/更新第一条弹幕文本
-  const t1 = document.getElementById('marqueeText');
-  const t1d = document.getElementById('marqueeTextDuplicate');
-  setMarqueeContent(t1, messages[0] || '');
-  setMarqueeContent(t1d, messages[0] || '');
+  // ---- 工具：给一个容器内的 wrapper/text id 做唯一化，避免冲突 ----
+  function uniquifyIds(container, idx) {
+    const wrapper = container.querySelector('#marqueeWrapper');
+    const t = container.querySelector('#marqueeText');
+    const td = container.querySelector('#marqueeTextDuplicate');
 
-  // 如果只有一条消息就不再生成第二条
-  if (messages.length < 2) return;
+    if (wrapper) wrapper.id = `marqueeWrapper_${idx}`;
+    if (t) t.id = `marqueeText_${idx}`;
+    if (td) td.id = `marqueeTextDuplicate_${idx}`;
 
-  // 克隆第一条弹幕容器，生成第二条轨道
-  const secondContainer = firstContainer.cloneNode(true);
+    return { wrapper, t, td };
+  }
 
-  // 修正 clone 后的重复 id，避免 DOM 冲突
-  const wrapper2 = secondContainer.querySelector('#marqueeWrapper');
-  const text2 = secondContainer.querySelector('#marqueeText');
-  const text2d = secondContainer.querySelector('#marqueeTextDuplicate');
+  // ---- 工具：设置某条轨道的 message + 速度 ----
+  function configureTrack(container, idx, message) {
+    const { wrapper, t, td } = uniquifyIds(container, idx);
 
-  if (wrapper2) wrapper2.id = 'marqueeWrapper2';
-  if (text2) text2.id = 'marqueeText2';
-  if (text2d) text2d.id = 'marqueeTextDuplicate2';
+    setMarqueeContent(t, message);
+    setMarqueeContent(td, message);
 
-  // 设置第二条弹幕内容
-  setMarqueeContent(text2, messages[1] || '');
-  setMarqueeContent(text2d, messages[1] || '');
+    // 速度：基础 20s，按轨道编号 + 少量扰动
+    // 你也可以改成固定规则，例如：20, 18, 22...
+    const base = 20;
+    const offsetByIdx = (idx % 5) - 2; // -2,-1,0,1,2 循环
+    const jitter = (Math.random() * 1.5) - 0.75; // -0.75 ~ +0.75
+    const duration = Math.max(8, base + offsetByIdx * 1.5 + jitter);
 
-  // 可选：让第二条速度略微不同，看起来更像弹幕（不想要就删掉这行）
-  if (wrapper2) wrapper2.style.animationDuration = '18s';
+    if (wrapper) wrapper.style.animationDuration = `${duration.toFixed(2)}s`;
+  }
 
-  // 添加到舞台
-  stage.appendChild(secondContainer);
+  // ---- 第 0 条轨道：直接用原来的 firstContainer ----
+  configureTrack(firstContainer, 0, messages[0] || '');
 
-  // 隐藏输入框区域
+  // ---- 其余轨道：克隆 firstContainer ----
+  for (let i = 1; i < messages.length; i++) {
+    const cloned = firstContainer.cloneNode(true);
+    configureTrack(cloned, i, messages[i] || '');
+    stage.appendChild(cloned);
+  }
+
+  // 隐藏输入框区域（保险起见）
   const inputContainer = document.querySelector('.input-container');
   if (inputContainer) inputContainer.style.display = 'none';
 });
