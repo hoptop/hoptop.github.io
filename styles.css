@@ -14,22 +14,26 @@ body {
   justify-content: center;
 }
 
-/* 双弹幕舞台 */
+/* 多轨道舞台：自动均分高度 */
 .danmaku-stage {
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  gap: 24px;
+  gap: 18px;               /* 轨道间距 */
+  padding: 16px 0;         /* 上下留白 */
 }
 
+/* 每条轨道不再写死 22vh，而是 flex 自适应 */
 .marquee-container {
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
   position: relative;
   background: #000;
-  height: 22vh;
+
+  flex: 1;                 /* 关键：N 条自动均分高度 */
+  min-height: 56px;        /* 太多轨道时保证最小高度 */
   display: flex;
   align-items: center;
 }
@@ -43,7 +47,7 @@ body {
 .marquee-text {
   display: inline-block;
   color: #0f0;
-  font-size: 8vw;
+  font-size: 6vw;          /* 多轨道时建议略小一点 */
   font-weight: bold;
   white-space: nowrap;
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.5),
@@ -52,19 +56,17 @@ body {
   padding: 0 2em;
 }
 
-/* 链接样式：继承弹幕风格，并可点击 */
+/* 链接样式：保持弹幕风格 + 可点击 */
 .danmaku-link {
   color: inherit;
   text-decoration: none;
-  pointer-events: auto;  /* 确保可点击 */
+  pointer-events: auto;
   cursor: pointer;
 }
-
 .danmaku-link:hover {
   text-decoration: underline;
 }
 
-/* 可选：链接状态下略微增强可交互感 */
 .marquee-text.is-link {
   user-select: none;
 }
@@ -77,51 +79,4 @@ body {
 /* 隐藏输入框 */
 .input-container {
   display: none !important;
-}
-
-/* 下面这些保留无所谓（因为 input-container 被隐藏了） */
-.message-input {
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #0f0;
-  border-radius: 8px;
-  padding: 12px 20px;
-  font-size: 18px;
-  font-family: monospace;
-  color: #0f0;
-  width: 350px;
-  outline: none;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3), inset 0 0 10px rgba(0, 255, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.message-input:focus {
-  border-color: #0f0;
-  box-shadow: 0 0 25px rgba(0, 255, 0, 0.5), inset 0 0 15px rgba(0, 255, 0, 0.2);
-}
-
-.message-input::placeholder {
-  color: rgba(0, 255, 0, 0.5);
-}
-
-.apply-btn {
-  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-  border: 2px solid #0f0;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-family: monospace;
-  color: #0f0;
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-  transition: all 0.3s ease;
-}
-
-.apply-btn:hover {
-  background: rgba(0, 255, 0, 0.2);
-  box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
-  transform: scale(1.05);
-}
-
-.apply-btn:active {
-  transform: scale(0.98);
 }
