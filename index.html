@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizontal Marquee</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danmaku</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="danmaku-stage">
+    <!-- 轨道 1：小能苗 -->
     <div class="marquee-container">
-        <div class="marquee-wrapper" id="marqueeWrapper">
-            <div class="marquee-text" id="marqueeText">小能苗完成作业了！</div>
-            <div class="marquee-text" id="marqueeTextDuplicate">小能苗完成作业了！</div>
-        </div>
-    </div>
-    
-    <div class="input-container">
-        <input type="text" id="messageInput" class="message-input" value="小能苗完成作业了！" placeholder="输入自定义文字...">
-        <button id="applyBtn" class="apply-btn">应用 ❤️</button>
+      <div class="marquee-wrapper" id="marqueeWrapper1">
+        <div class="marquee-text" id="marqueeText1">小能苗完成作业了！</div>
+        <div class="marquee-text" id="marqueeText1Duplicate">小能苗完成作业了！</div>
+      </div>
     </div>
 
-    <!-- JavaScript 模块 -->
-    <script src="js/main.js"></script>
+    <!-- 轨道 2：任 -->
+    <div class="marquee-container">
+      <div class="marquee-wrapper" id="marqueeWrapper2">
+        <div class="marquee-text" id="marqueeText2">任完成作业了！</div>
+        <div class="marquee-text" id="marqueeText2Duplicate">任完成作业了！</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 不需要输入框与按钮了；如 main.js 只负责跑马灯动画，也可以保留 -->
+  <script src="js/main.js"></script>
 </body>
 </html>
