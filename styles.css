@@ -14,13 +14,23 @@ body {
     justify-content: center;
 }
 
+/* 新增：双弹幕舞台（由 main.js 动态包裹生成） */
+.danmaku-stage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    gap: 24px; /* 两条弹幕间距，可调 */
+}
+
+/* 关键修改：原来 100vh 会导致一条弹幕占满全屏，第二条看不到 */
 .marquee-container {
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
     background: #000;
-    height: 100vh;
+    height: 22vh;  /* 从 100vh 改小，适配两条轨道 */
     display: flex;
     align-items: center;
 }
@@ -52,17 +62,12 @@ body {
     }
 }
 
+/* 按你的要求：去掉输入框（不改 index.html，用 CSS 隐藏） */
 .input-container {
-    position: fixed;
-    bottom: 50px; /* Move to bottom */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+    display: none !important;
 }
 
+/* 下面这些保留无所谓（因为 input-container 被隐藏了） */
 .message-input {
     background: rgba(0, 0, 0, 0.8);
     border: 2px solid #0f0;
