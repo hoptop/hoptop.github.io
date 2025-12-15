@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '[shade doll完成作业了!](https://fy10086.github.io)',
     '[任完成作业了!](http://64.176.80.113)',
     '[市民廖女士完成作业了!](https://liaoyuan919.github.io)',
-    '[发条鸟完成作业了!](https://entpfy.github.io)',
+    '[发条鸟完成作业了!](https://entpyf.github.io)',
     '果子老师来写作业啊！'
   ];
 
