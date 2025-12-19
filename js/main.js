@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '[发条鸟完成作业了!](https://entpyf.github.io)',
     '[Violet完成作业了!](https://jymtop.github.io/aihomework.github.io/)',
     '[珠珠完成作业了!](https://ruanliqin.github.io/)',
+    '[xinyi完成作业了!](https://xinyi-jane.github.io)',
     '果子老师在等你交作业哦！'
   ];
 
