@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '[珠珠完成作业了!](https://ruanliqin.github.io/)',
     '[xinyi完成作业了!](https://xinyi-jane.github.io)',
     '[小雷完成作业了!](https://2473651157.github.io/bazi-generator/)',
+    '[huhu完成作业了!](https://hulilly.github.io/)',
     '果子老师在等你交作业哦！'
   ];
 
