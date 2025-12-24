@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '[huhu完成作业了!](https://hulilly.github.io/)',
     '[小淇同学完成作业了!](https://Microqi.github.io)',
     '[💤完成作业了!](https://sssshanzhap.github.io/)',
+    '[maosancai完成作业了!](http://keren.waatlab.com/zh/)',
     '果子老师在等你交作业哦！'
   ];
 
