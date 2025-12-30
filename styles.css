@@ -20,8 +20,8 @@ body {
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  gap: 18px;               /* 轨道间距 */
-  padding: 16px 0;         /* 上下留白 */
+  gap: 8px;                /* 轨道间距 - 减小以容纳更多内容 */
+  padding: 12px 0;         /* 上下留白 - 减小以容纳更多内容 */
 }
 
 /* 每条轨道不再写死 22vh，而是 flex 自适应 */
@@ -33,7 +33,7 @@ body {
   background: #000;
 
   flex: 1;                 /* 关键：N 条自动均分高度 */
-  min-height: 56px;        /* 太多轨道时保证最小高度 */
+  min-height: 40px;        /* 太多轨道时保证最小高度 - 减小以容纳更多内容 */
   display: flex;
   align-items: center;
 }
@@ -47,13 +47,12 @@ body {
 .marquee-text {
   display: inline-block;
   color: #0f0;
-  font-size: 6vw;          /* 多轨道时建议略小一点 */
+  font-size: 4vw;          /* 减小字体以适应更多轨道 */
   font-weight: bold;
   white-space: nowrap;
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5),
-               0 0 20px rgba(0, 255, 0, 0.3),
-               0 0 30px rgba(0, 255, 0, 0.2);
-  padding: 0 2em;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.5),
+               0 0 15px rgba(0, 255, 0, 0.3);
+  padding: 0 1.5em;        /* 减小内边距以节省空间 */
 }
 
 /* 链接样式：保持弹幕风格 + 可点击 */
