@@ -6,14 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
     '[市民廖女士完成作业了!](https://liaoyuan919.github.io)',
     '[发条鸟完成作业了!](https://entpyf.github.io)',
     '[Violet完成作业了!](https://jymtop.github.io/aihomework.github.io/)',
-    '[珠珠完成作业了!](https://ruanliqin.github.io/)',
+    '[珠珠完成作业了!](http://124.223.166.76)',
     '[xinyi完成作业了!](https://xinyi-jane.github.io)',
     '[小雷完成作业了!](https://2473651157.github.io/bazi-generator/)',
     '[huhu完成作业了!](https://hulilly.github.io/)',
     '[小淇同学完成作业了!](https://Microqi.github.io)',
     '[💤完成作业了!](https://sssshanzhap.github.io/)',
     '[maosancai完成作业了!](http://keren.waatlab.com/zh/)',
-    '果子老师在等你交作业哦！'
+    '[伟祥完成作业了!](https://lwx0727.github.io/)',
+    '[Yuang 完成作业了!](https://yeungyuenming.github.io/zh/)',
+    '[7ason 完成作业了!](http://www.8bit.uno/)',
+    '[up_and_downs 完成作业了!](http://43.152.67.223/)',
+    '[果子完成作业了!](https://shipeng-guo.github.io/yyspin/)'
   ];
 
   const firstContainer = document.querySelector('.marquee-container');
