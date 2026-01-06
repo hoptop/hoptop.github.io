@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     '[Yuang 完成作业了!](https://yeungyuenming.github.io/zh/)',
     '[7ason 完成作业了!](http://www.8bit.uno/)',
     '[up_and_downs 完成作业了!](http://43.152.67.223/)',
+    '[Hayes 完成作业了!](http://43.134.45.178/)',
+    '[陈陈 完成作业了!](https://chenchen199401-cmyk.github.io)',
     '[果子完成作业了!](https://shipeng-guo.github.io/yyspin/)'
   ];
 
